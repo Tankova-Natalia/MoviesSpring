@@ -1,0 +1,17 @@
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate
+Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="model.Movie" table="movies">
+        <id name="id" type="int" column="id">
+            <generator class="identity"/>
+        </id>
+        <property name="name" type="java.lang.String"/>
+        <property name="year" type="int"/>
+        <property name="rank" type="float"/>
+        <set name="directors" table="movies_directors" cascade="save-update">
+            <key column="movie_id" foreign-key="idx_movie_id"/>
+            <many-to-many  class="model.Director" column="director_id" foreign-key="idx_director_id" ></many-to-many>
+        </set>
+    </class>
+</hibernate-mapping>
